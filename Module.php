@@ -3,6 +3,7 @@
 namespace Visitor;
 
 use Krystal\Application\Module\AbstractModule;
+use Visitor\Service\VisitorService;
 
 final class Module extends AbstractModule
 {
@@ -25,6 +26,7 @@ final class Module extends AbstractModule
     public function getServiceProviders()
     {
         return array(
+            'visitorService' => new VisitorService($this->createMapper('\Visitor\Storage\MySQL\VisitorMapper'))
         );
     }
 }
