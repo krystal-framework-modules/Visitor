@@ -24,6 +24,20 @@ final class VisitorMapper extends AbstractMapper
     }
 
     /**
+     * Mark all items as read
+     * 
+     * @param int $ownerId
+     * @return boolean
+     */
+    public function markAsRead($ownerId)
+    {
+        $db = $this->db->update(self::getTableName(), array('viewed' => '1'))
+                       ->whereEquals('owner_id', $ownerId);
+
+        return (bool) $db->execute(true);
+    }
+
+    /**
      * Counts a number of new visitors
      * 
      * @param int $ownerId

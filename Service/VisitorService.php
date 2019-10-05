@@ -27,6 +27,17 @@ final class VisitorService extends AbstractService
     }
 
     /**
+     * Mark all items as read
+     * 
+     * @param int $ownerId
+     * @return boolean
+     */
+    public function markAsRead($ownerId)
+    {
+        return $this->visitorMapper->markAsRead($ownerId);
+    }
+
+    /**
      * Counts a number of new visitors
      * 
      * @param int $ownerId
