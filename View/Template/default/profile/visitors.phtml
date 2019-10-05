@@ -1,0 +1,22 @@
+
+<?php if (!empty($users)): ?>
+<div class="row">
+    <?php foreach ($users as $user): ?>
+    <div class="col-lg-3">
+        <p>
+            <?= $user['name']; ?>
+            <?php if (isset($user['age'])): ?>
+            <small class="text-muted"> / <?= $user['age']; ?></small>
+            <?php endif; ?>
+        </p>
+
+        <a class="btn btn-primary" href="<?= $this->url('User:Profile@indexAction', array('id' => $user['id'])); ?>"><?php $this->show('View profile'); ?></a>
+    </div>
+    <?php endforeach; ?>
+</div>
+
+<?php else: ?>
+
+<p><?php $this->show('Noone has visited your profile at the moment'); ?></p>
+
+<?php endif; ?>
