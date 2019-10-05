@@ -13,4 +13,12 @@ final class VisitorMapper extends AbstractMapper
     {
         return 'users_visitors';
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getPk()
+    {
+        return 'id';
+    }
 }
