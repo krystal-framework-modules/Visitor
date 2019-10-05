@@ -27,6 +27,17 @@ final class VisitorService extends AbstractService
     }
 
     /**
+     * Find all visitors of a current user
+     * 
+     * @param int $ownerId
+     * @return array
+     */
+    public function findAll($ownerId)
+    {
+        return $this->visitorMapper->findAll($ownerId);
+    }
+
+    /**
      * Visit someone's profile
      * 
      * @param int $ownerId
