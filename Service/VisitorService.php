@@ -2,6 +2,7 @@
 
 namespace Visitor\Service;
 
+use Krystal\Date\TimeHelper;
 use Krystal\Application\Model\AbstractService;
 use Visitor\Storage\MySQL\VisitorMapper;
 
@@ -23,5 +24,30 @@ final class VisitorService extends AbstractService
     public function __construct(VisitorMapper $visitorMapper)
     {
         $this->visitorMapper = $visitorMapper;
+    }
+
+    /**
+     * Visit someone's profile
+     * 
+     * @param int $ownerId
+     * @param int $visitorId Profile id to be visited
+     * @return boolean Depending on success
+     */
+    public function visit($ownerId, $visitorId)
+    {
+        // Can't visit self
+        if ($ownerId == $visitorId) {
+            return false;
+        }
+
+        // Data to be inserted
+        $data = array(
+            'owner_id' => $ownerId,
+            'visitor_id' => $visitorId,
+            'datetime' => TimeHelper::getNow(),
+            'viewed' => 0
+        );
+
+        return $this->visitorMapper->persist($data);
     }
 }
