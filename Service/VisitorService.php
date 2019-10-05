@@ -27,6 +27,17 @@ final class VisitorService extends AbstractService
     }
 
     /**
+     * Counts a number of new visitors
+     * 
+     * @param int $ownerId
+     * @return int
+     */
+    public function countNew($ownerId)
+    {
+        return $this->visitorMapper->countNew($ownerId);
+    }
+
+    /**
      * Find all visitors of a current user
      * 
      * @param int $ownerId

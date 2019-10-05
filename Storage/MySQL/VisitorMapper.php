@@ -24,6 +24,23 @@ final class VisitorMapper extends AbstractMapper
     }
 
     /**
+     * Counts a number of new visitors
+     * 
+     * @param int $ownerId
+     * @return int
+     */
+    public function countNew($ownerId)
+    {
+        $db = $this->db->select()
+                       ->count($this->getPk())
+                       ->from(self::getTableName())
+                       ->whereEquals('owner_id', $ownerId)
+                       ->andWhereEquals('viewed', '0');
+
+        return (int) $db->queryScalar();
+    }
+
+    /**
      * Find all visitors of a current user
      * 
      * @param int $ownerId
